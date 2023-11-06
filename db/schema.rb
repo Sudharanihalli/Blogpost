@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_26_122651) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_06_065445) do
   create_table "blog_posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -25,6 +25,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_26_122651) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "blog_post_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_post_id"], name: "index_comments_on_blog_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+# Could not dump table "untitled_table_8" because of following StandardError
+#   Unknown type 'serial' for column 'id'
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -37,4 +50,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_26_122651) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "blog_posts"
+  add_foreign_key "comments", "users"
 end

@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-   resources :blog_posts
+   resources :blog_posts do
+    resources :comments, only: [:create]
+   end
+  
   # get  "/blog_posts/:new", to: "blog_posts#show", as: :new_blog_post
   # get  "/blog_posts/:id/:edit", to: "blog_posts#edit", as: :edit_post
   # patch  "/blog_posts/:id", to: "blog_post#update"

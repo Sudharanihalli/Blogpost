@@ -7,9 +7,7 @@
 
 <p>
 <strong>Comments:</strong>
- <%= render @blog_post.comments.order(id: :desc) %>
- <%= render partial: 'comments/form', locals: { blog_post: @blog_post } %>  
+ <%= render @blog_post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+ <%= render partial: 'comments/form', locals: { blog_post: @blog_post, parent: nil } %>  
 </p>
-
-
 

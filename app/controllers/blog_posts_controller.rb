@@ -38,8 +38,9 @@ end
 end
 
     def destroy
+        @blog_post.comments.destroy_all 
+        @blog_post.destroy
     # @blog_post = BlogPost.find(params[:id])
-    @blog_post.destroy
     redirect_to root_path
 end
 

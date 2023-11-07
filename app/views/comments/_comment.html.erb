@@ -2,4 +2,31 @@
 <p><%= comment.content %></p>
 <small>by <%= comment.user.email %></small>
 
+<a href="#" class="comment-form-display">reply</a>
+<div class="comment-form">
+<%= render partial: 'comments/form', locals: {blog_post: comment.blog_post, parent: comment} %>
+
+
+<div class="sub-comment">
+   <%= render comment.comments.order(id: :desc) %>
+</div>
 </article>
+
+<hr /> 
+
+<style>
+  .sub-comment {
+    padding-left: 20px;
+  }
+</style>
+
+
+<script>
+ document.querySelectorAll('.comment-form-display').forEach((el) => {
+  el.addEventListener('click', (ev) => {
+   ev.preventDefault();
+    el.nextElementSibling.style = 'display: block;'
+})
+})
+</script>
+

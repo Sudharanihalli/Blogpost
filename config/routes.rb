@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-   resources :blog_posts do
+   resources :blog_post do
     resources :comments, only: [:create]
    end
   

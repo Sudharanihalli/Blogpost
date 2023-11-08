@@ -1,4 +1,4 @@
-<form action="<%= blog_post_comments_path(blog_post) %>" method="post">
+<form action="<%= blog_posts_comments_path(blog_post) %>" method="post">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 <% if !parent.nil? %>
 <input type="hidden" name="comment[parent_id]"  value="<%= parent.id %>">

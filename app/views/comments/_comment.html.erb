@@ -6,7 +6,6 @@
 <div class="comment-form">
 <%= render partial: 'comments/form', locals: {blog_post: comment.blog_post, parent: comment} %>
 
-
 <div class="sub-comment">
    <%= render comment.comments.order(id: :desc) %>
 </div>
@@ -23,7 +22,7 @@
 
 <script>
  document.querySelectorAll('.comment-form-display').forEach((el) => {
-  el.addEventListener('click', (ev) =>> {
+  el.addEventListener('click', (ev) => {
    ev.preventDefault();
     el.nextElementSibling.style = 'display: block;'
 })
